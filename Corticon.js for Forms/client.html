@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dynamic Questions Demo</title>
+    <title>Dynamic Forms with Corticon.js</title>
 
     <link rel="stylesheet" href="client.css">
     <link rel="stylesheet" href="clientSideComponent/dynForm/UIControlsStyles.css">
@@ -25,44 +25,23 @@
     	of the options in the switch sample Select dropdown
     	-->
         <script type="text/javascript" src="decisionServices/Form/browser/decisionServiceBundle.js"></script>
-        <script type="text/javascript" src="decisionServices/Form/browser/decisionServiceBundle.js"></script>
-        <script type="text/javascript" src="decisionServices/Form/browser/decisionServiceBundle.js"></script>
-        <script type="text/javascript" src="decisionServices/Form/browser/decisionServiceBundle.js"></script>
-        <script type="text/javascript" src="decisionServices/Form/browser/decisionServiceBundle.js"></script>
-        <script type="text/javascript" src="decisionServices/Form/browser/decisionServiceBundle.js"></script>
 
         <script>
             let currentDecisionServiceEngine;
             		let allInputData = [];
             		let inputData; // per decision service set of data to pass all along
-            		let itsCurrentLanguage = 'english';
 
             		const itsTracer = new Tracer();
             		const itsStepsController = new corticon.dynForm.StepsController();
 
-            		function processSwitchSample(selectObject) {
-            			const index = selectObject.value;
-            			currentDecisionServiceEngine = window.corticonEngines[index];
-            			inputData = allInputData[index];
-
-            			if (index === "5")
-            				$("#languageContainerId").show();
-            			else
-            				$("#languageContainerId").hide();
-            		}
-
-            		function processSwitchLanguage(selectObject) {
-            			itsCurrentLanguage = selectObject.value;
-            		}
-
             		function processClickStart() {
             			const baseDynamicUIEl = $('#dynUIContainerId');
-            			itsStepsController.startDynUI(baseDynamicUIEl, currentDecisionServiceEngine, inputData, itsCurrentLanguage);
+            			itsStepsController.startDynUI(baseDynamicUIEl, currentDecisionServiceEngine, inputData);
             		}
 
             		function processClickNext() {
             			const baseDynamicUIEl = $('#dynUIContainerId');
-            			itsStepsController.processNextStep(baseDynamicUIEl, currentDecisionServiceEngine, itsCurrentLanguage);
+            			itsStepsController.processNextStep(baseDynamicUIEl, currentDecisionServiceEngine);
             		}
 
             		function saveStateButton(show) {
@@ -92,46 +71,11 @@
 
             		function setupInitialInputData() {
     							const inDataEmpty = {};
-            			const inDataClaim1 = {};
-            			inDataClaim1.claim = {};
-            			inDataClaim1.claim.policyType = 'Individual';
-            			inDataClaim1.claim.addressOnFile = '123 Main Street, Indianapolis, IN 46077';
-            			inDataClaim1.claim.addressOnFileNotPObox = 'T';
-            			inDataClaim1.claim.addressOnFileIsUSA = 'T';
-            			inDataClaim1.claim.isCFAR = 'T';
-
-            			const inDataClaim2 = {};
-            			inDataClaim2.claim = {};
-            			inDataClaim2.claim.policyType = 'Multiple';
-            			inDataClaim2.claim.addressOnFile = '79 Locust StreetGlen Cove, NY 11542';
-            			inDataClaim2.claim.addressOnFileNotPObox = 'T';
-            			inDataClaim2.claim.addressOnFileIsUSA = 'T';
-            			inDataClaim2.claim.isCFAR = 'T';
-
-            			const inDataClaim3 = {};
-            			inDataClaim3.claim = {};
-            			inDataClaim3.claim.policyType = 'Individual';
-            			inDataClaim3.claim.isCFAR = 'F';
-
-            			const inDataClaim4 = {};
-            			inDataClaim4.claim = {};
-            			inDataClaim4.claim.policyType = 'Multiple';
-            			inDataClaim4.claim.isCFAR = 'T';
-
-            			const inDataClaim5 = {};
-            			inDataClaim5.claim = {};
-            			inDataClaim5.claim.policyType = 'Individual';
-            			inDataClaim5.claim.isCFAR = 'F';
-                  inDataClaim5.claim.addressOnFile = '793 Mayflower Dr. Cartersville, GA 30120';
-            			inDataClaim5.claim.addressOnFileNotPObox = 'F';
-            			inDataClaim5.claim.addressOnFileIsUSA = 'T';
+            			const inDataBegin = {};
 
             			// Must correspond with the order of the DS inclusion
-            			allInputData.push(inDataClaim1);
-            			allInputData.push(inDataClaim2);
-            			allInputData.push(inDataClaim3);
-            			allInputData.push(inDataClaim4);
-            			allInputData.push(inDataClaim5);
+            			allInputData.push(inDataBegin);
+
             			inputData = allInputData[0];
             		}
 
@@ -172,45 +116,25 @@
     </head>
 
     <body>
-        <div class="sampleTitle"><i class="bi bi-file-earmark-ruled"></i>&nbsp;Test Driver for Rules Driven Dynamic Forms</div>
+        <div class="sampleTitle"><i class="bi bi-file-earmark-ruled"></i>&nbsp;Dynamic Forms with Corticon.js</div>
 
         <table width="100%">
             <tr>
                 <td valign="top">
                     <div class="commandBar">
-                        <div class="commandContainer">
-                            <div class="sampleSelectLabel">Select Test Inputs:</div>
-                            <select class="sampleSelect" id="sampleSelectId" onchange="processSwitchSample(this)">
-                              <option value="0">Indiv, addressOnFile, notPOBox, addressInUSA, is CFAR</option>
-                              <option value="1">Multiple, addressOnFile, notPOBox, addressInUSA, is CFAR</option>
-                              <option value="2">Indiv, no CFAR</option>
-                              <option value="3">Multiple, is CFAR</option>
-                              <option value="4">Indiv, addressInUSA, is PO Box, addressInUSA, no CFAR</option>
-    						</select>
-                        </div>
 
-                        <div style="display: none;" id="languageContainerId">
-                            <div class="commandVerticalSpacer">&nbsp;</div>
-                            <div class="commandContainer">
-                                <!--						<div class="sampleSelectLabel">Select Language:</div>-->
-                                <select class="sampleSelect" id="languageSelectId" onchange="processSwitchLanguage(this)">
-    								<option value="english">English</option>
-    								<option value="italian">Italiano</option>
-    							</select>
-                            </div>
-                        </div>
 
                         <div class="commandVerticalSpacer">&nbsp;</div>
 
                         <div class="commandContainer">
                             <span class="commandButton" id="startActionId">
     							<a class="command" accesskey="s" title="Start Dynamic Form - Shortcut: Alt S (Windows) - CRTL Option S (Mac)" href="#" onclick="processClickStart(); return false;">
-    								<i style="padding-left: .3rem;" class="bi bi-box-arrow-in-right"></i>&nbsp;<span style="text-decoration: underline">S</span>tart
+    								<i style="padding-left: .3rem;" class="bi bi-box-arrow-in-right"></i>&nbsp;<span style="text-decoration: underline">Start</span>
                             </a>
                             </span>
                             <span class="commandButton commandButtonHidden" id="nextActionId">
     							<a class="command" accesskey="n" title="Next Step - Shortcut: Alt N (Windows) - CRTL Option N (Mac)" href="#" onclick="processClickNext(); return false;">
-    								<i style="padding-left: .3rem;" class="bi bi-arrow-right-square"></i>&nbsp;<span style="text-decoration: underline">N</span>ext
+    								<i style="padding-left: .3rem;" class="bi bi-arrow-right-square"></i>&nbsp;<span style="text-decoration: underline">Next</span>
                             </a>
                             </span>
                         </div>
@@ -218,12 +142,12 @@
                         <div class="commandContainer showTraceContainer">
                             <span class="commandButton" id="showTraceId">
     							<a class="command" accesskey="t" title="Start Dynamic Form - Shortcut: Alt T (Windows) - CRTL Option T (Mac)" href="#" onclick="processShowTrace(); return false;">
-    								&nbsp;Show <span style="text-decoration: underline">T</span>race
+    								&nbsp; <span style="text-decoration: underline">Show Trace</span>
                             </a>
                             </span>
                             <span class="commandButton commandButtonHidden" id="hideTraceId">
     							<a class="command" accesskey="h" title="Hide Trace - Shortcut: Alt H (Windows) - CRTL Option H (Mac)" href="#" onclick="processHideTrace(); return false;">
-    								&nbsp;<span style="text-decoration: underline">H</span>ide Trace
+    								&nbsp;<span style="text-decoration: underline">Hide Trace</span>
                             </a>
                             </span>
                         </div>
@@ -232,7 +156,6 @@
                 <!--				<td width="98%">&nbsp;</td>-->
                 <td width="100%">
                     <div id="dynUIContainerId" class="dynUIContainer">
-                        <div>Dynamic Form component</div>
                         <div style="margin: 2rem;">
               <li>Corticon.js packages business rules as executable JavaScript bundles (without any external dependencies).</li>
               <li>This enables experts on the rules themselves-- whether they're expert coders or not-- are actively involved in the implementation of complex business logic</li>
