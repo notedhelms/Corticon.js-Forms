@@ -1,6 +1,6 @@
 .dynUIContainer {
-    margin: 1rem;
-    padding: 1rem;
+    margin: .5rem;
+    padding: .5rem;
     border: 0.5rem solid darkmagenta;
     background-color: ghostwhite;
     color: black;
@@ -10,7 +10,7 @@
 
 .inputContainer {
     margin: 1em;
-}
+    }
 
 .inputLabelSide {
     margin-left: .3em;

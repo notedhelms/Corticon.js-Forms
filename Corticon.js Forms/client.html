@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="client.css">
   <link rel="stylesheet" href="clientSideComponent/dynForm/UIControlsStyles.css">
   <link rel="stylesheet" href="trace/TraceStyles.css">
-
   <!-- From https://releases.jquery.com/ -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -116,90 +115,47 @@
 </head>
 
 <body>
-  <div class="sampleTitle"><i class="bi bi-file-earmark-ruled"></i>&nbsp;Dynamic Forms with Corticon.js</div>
-
-  <table width="100%">
-    <tr>
-      <td valign="top">
-        <div class="commandBar">
-
-
-          <div class="commandVerticalSpacer">&nbsp;</div>
-
-          <div class="commandContainer">
-            <span class="commandButton" id="startActionId">
-              <a class="command" accesskey="s" title="Start Dynamic Form - Shortcut: Alt S (Windows) - CRTL Option S (Mac)" href="#" onclick="processClickStart(); return false;">
-                <i style="padding-left: .3rem;" class="bi bi-box-arrow-in-right"></i>&nbsp;<span style="text-decoration: underline">Start</span>
-              </a>
-            </span>
-            <span class="commandButton commandButtonHidden" id="nextActionId">
-              <a class="command" accesskey="n" title="Next Step - Shortcut: Alt N (Windows) - CRTL Option N (Mac)" href="#" onclick="processClickNext(); return false;">
-                <i style="padding-left: .3rem;" class="bi bi-arrow-right-square"></i>&nbsp;<span style="text-decoration: underline">Next</span>
-              </a>
-            </span>
-          </div>
-
-          <div class="commandContainer showTraceContainer">
-            <span class="commandButton" id="showTraceId">
-              <a class="command" accesskey="t" title="Start Dynamic Form - Shortcut: Alt T (Windows) - CRTL Option T (Mac)" href="#" onclick="processShowTrace(); return false;">
-                &nbsp; <span style="text-decoration: underline">Show Trace</span>
-              </a>
-            </span>
-            <span class="commandButton commandButtonHidden" id="hideTraceId">
-              <a class="command" accesskey="h" title="Hide Trace - Shortcut: Alt H (Windows) - CRTL Option H (Mac)" href="#" onclick="processHideTrace(); return false;">
-                &nbsp;<span style="text-decoration: underline">Hide Trace</span>
-              </a>
-            </span>
-          </div>
-        </div>
-      </td>
-      <!--				<td width="98%">&nbsp;</td>-->
-      <td width="100%">
-        <div id="dynUIContainerId" class="dynUIContainer">
-          <div style="margin: 2rem;">
-            Want to learn how Corticon.js can enable non developers to create sophisticated dynamic forms? Hit the Start button to the left to check it out!
-            </ul>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </table>
-
-  <div class="allTracesContainer">
-    <!--    <h3><i class="bi bi-layout-three-columns"></i>&nbsp;Decision Service (Rules) Trace Panel</h3>-->
-    <div class="tracePanelTitle">Decision Service (Rules) Trace Panel</div>
-
-    <div class="stageTraceHistory" style="overflow-x: auto; overflow-y: hidden; padding: 0.8rem;">
-      <span style="width: 20px;" id="traceHistorySummaryId"><i class="bi bi-journal-text"></i></span>
-      <span style="margin-left: 0.6rem;" id="traceHistoryId"></span>
-    </div>
-    <table width="100%">
-      <tr>
-        <td>
-          <i class="bi bi-arrow-down-right-square"></i>&nbsp;Input to Decision Service Call <a href="#" title="Copy to clipboard" class="copyToClip" onclick="corticon.util.copyToClipboard('#decisionServiceInputId'); return false;">&nbsp;<i
-              class="bi bi-clipboard-plus"></i></a>
-        </td>
-        <td>
-          <i class="bi bi-arrow-up-left-square"></i>&nbsp;Results From Decision Service Call <span id="execTimeId"></span> <a href="#" title="Copy to clipboard" class="copyToClip"
-            onclick="corticon.util.copyToClipboard('#decisionServiceResultId'); return false;">&nbsp;<i class="bi bi-clipboard-plus"></i></a>
-        </td>
-        <td>
-          <i class="bi bi-clipboard-data"></i>&nbsp;Accrued Form Data <a href="#" title="Copy to clipboard" class="copyToClip" onclick="corticon.util.copyToClipboard('#formDataId'); return false;">&nbsp;<i class="bi bi-clipboard-plus"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <td width="20%">
-          <textarea style="width: 100%; height: 300px;" id="decisionServiceInputId"></textarea>
-        </td>
-        <td width="40%">
-          <textarea style="width: 100%; height: 300px;" id="decisionServiceResultId"></textarea>
-        </td>
-        <td width="40%">
-          <textarea style="width: 100%; height: 300px;" id="formDataId"></textarea>
-        </td>
-      </tr>
-    </table>
-  </div>
+  <div class="sampleTitle"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://i.ibb.co/z5V7ZS0/road-map.png" alt="" width="51" height="51" />&nbsp;</div>
+<div class="sampleTitle" style="text-align: center;">Dynamic Forms with Corticon.js</div>
+<table width="100%">
+<tbody>
+<tr>
+<td valign="middle">
+<div class="commandBar">
+<div class="commandVerticalSpacer">&nbsp;</div>
+<div class="commandContainer"><span class="commandButton" id="startActionId"> <a class="command" accesskey="s" title="Start Dynamic Form - Shortcut: Alt S (Windows) - CRTL Option S (Mac)" href="#" onclick="processClickStart(); return false;"> <span style="color: #0000ff;"><span style="text-decoration: underline;">Start</span></span> </a> </span> <span class="commandButton commandButtonHidden" id="nextActionId"> <a class="command" accesskey="n" title="Next Step - Shortcut: Alt N (Windows) - CRTL Option N (Mac)" href="#" onclick="processClickNext(); return false;"> <i style="padding-left: .3rem;" class="bi bi-arrow-right-square"></i>&nbsp;<span style="color: #0000ff;"><span style="text-decoration: underline;">Next</span> </span></a> </span></div>
+<div class="commandContainer showTraceContainer"><span class="commandButton" id="showTraceId"> <a class="command" accesskey="t" title="Start Dynamic Form - Shortcut: Alt T (Windows) - CRTL Option T (Mac)" href="#" onclick="processShowTrace(); return false;">  <span style="color: #0000ff;"><span style="text-decoration: underline;">Show Trace Panel</span> </span></a> </span> <span class="commandButton commandButtonHidden" id="hideTraceId"> <a class="command" accesskey="h" title="Hide Trace - Shortcut: Alt H (Windows) - CRTL Option H (Mac)" href="#" onclick="processHideTrace(); return false;"> <span style="color: #0000ff;"><span style="text-decoration: underline;">Hide Trace Panel</span> </span></a> </span></div>
+</div>
+</td>
+<!--				<td width="98%">&nbsp;</td>-->
+<td width="100%">
+<div id="dynUIContainerId" class="dynUIContainer">
+<div style="margin: 2rem;">Want to learn how Corticon.js can enable non developers to create sophisticated dynamic forms?
+<div class="commandVerticalSpacer">&nbsp;</div>
+Hit the Start button to the left to check it out!</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="allTracesContainer"><!--    <h3><i class="bi bi-layout-three-columns"></i>&nbsp;Decision Service (Rules) Trace Panel</h3>-->
+<div class="tracePanelTitle">Decision Service (Rules) Trace Panel</div>
+<div class="stageTraceHistory" style="overflow-x: auto; overflow-y: hidden;cp padding: 0.8rem;"><span style="width: 20px;" id="traceHistorySummaryId"><i class="bi bi-journal-text"></i></span> <span style="margin-left: 0.6rem;" color="black"; id="traceHistoryId"></span></div>
+<table width="100%">
+<tbody>
+<tr>
+<td><i class="bi bi-arrow-down-right-square"></i>&nbsp;Input to Decision Service Call <a href="#" title="Copy to clipboard" class="copyToClip" onclick="corticon.util.copyToClipboard('#decisionServiceInputId'); return false;">&nbsp;<i class="bi bi-clipboard-plus"></i></a></td>
+<td><i class="bi bi-arrow-up-left-square"></i>&nbsp;Results From Decision Service Call <span id="execTimeId"></span> <a href="#" title="Copy to clipboard" class="copyToClip" onclick="corticon.util.copyToClipboard('#decisionServiceResultId'); return false;">&nbsp;<i class="bi bi-clipboard-plus"></i></a></td>
+<td><i class="bi bi-clipboard-data"></i>&nbsp;Accrued Form Data <a href="#" title="Copy to clipboard" class="copyToClip" onclick="corticon.util.copyToClipboard('#formDataId'); return false;">&nbsp;<i class="bi bi-clipboard-plus"></i></a></td>
+</tr>
+<tr>
+<td width="20%"><textarea style="width: 100%; height: 300px;" id="decisionServiceInputId"></textarea></td>
+<td width="40%"><textarea style="width: 100%; height: 300px;" id="decisionServiceResultId"></textarea></td>
+<td width="40%"><textarea style="width: 100%; height: 300px;" id="formDataId"></textarea></td>
+</tr>
+</tbody>
+</table>
+</div>
 </body>
 
 </html>
