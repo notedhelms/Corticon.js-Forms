@@ -13,11 +13,12 @@
 
 .allTracesContainer textarea {
     background-color: #535151;
-    color: white;
+    color: black;
+    font-family: Segoe UI;
 }
 
 .allTracesContainer tr {
-    color: white;
+    color: black;
 }
 
 .stageTraceHistory {
@@ -44,6 +45,5 @@ a.stageInTrace:hover, a.stageInTrace:visited, a.stageInTrace:link, a.stageInTrac
 
 a.copyToClip:hover, a.copyToClip:visited, a.copyToClip:link, a.copyToClip:active {
     text-decoration: none;
-    color: white;
+    color: black;
 }
-
