@@ -158,9 +158,6 @@ corticon.dynForm.StepsController = function () {
 
     function _askDecisionServiceForNextUIElementsAndRender ( decisionServiceEngine, payload, baseEl ) {
         const result = _runDecisionService( decisionServiceEngine, payload );
-        if ( result.corticon.status !== 'success' )
-            return;
-
         const nextUI = result.payload[0];
 
         // Save context of where we need to save data the user enters so that rule modeler does not have to specify it at each step.
@@ -308,30 +305,24 @@ corticon.dynForm.StepsController = function () {
 
     function _runDecisionService(decisionServiceEngine, payload ) {
         try {
-            const event = { "input": payload, "stage": payload[0].currentStageNumber };
-            corticon.dynForm.raiseEvent( corticon.dynForm.customEvents.BEFORE_DS_EXECUTION,event);
-
+            corticon.dynForm.raiseEvent( corticon.dynForm.customEvents.BEFORE_DS_EXECUTION,{ "input": payload, "stage": payload[0].currentStageNumber });
             // const configuration = { logLevel: 0 };
             const configuration = { logLevel: 1 };
             const t1 = performance.now();
             const result = decisionServiceEngine.execute(payload, configuration);
             const t2 = performance.now();
-            const event2 = { "output": result,
-                "execTimeMs": t2-t1,
-                "stage": payload[0].currentStageNumber
-            };
+            corticon.dynForm.raiseEvent( corticon.dynForm.customEvents.NEW_DS_EXECUTION,
+                { "output": result,
+                    "execTimeMs": t2-t1,
+                    "stage": payload[0].currentStageNumber
+                }
+            );
 
             if(result.corticon !== undefined) {
-                if ( result.corticon.status === 'success' ) {
-                    const newStepUI = result.payload[0];
-                    if ( newStepUI.currentStageDescription !== undefined && newStepUI.currentStageDescription !== null )
-                        event2["stageDescription"] = newStepUI.currentStageDescription;
-                }
+                if ( result.corticon.status === 'success' )
+                    return result;
                 else
                     alert('There was an error executing the rules.\n' + JSON.stringify(result, null, 2));
-
-                corticon.dynForm.raiseEvent( corticon.dynForm.customEvents.NEW_DS_EXECUTION, event2 );
-                return result;
             }
             else
                 alert('There was an error executing the rules.\n' + JSON.stringify(result, null, 2));

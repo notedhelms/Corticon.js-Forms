@@ -1,15 +1,16 @@
 .dynUIContainer {
-    margin: 1rem;
-    padding: 1rem;
-    border: 0.5rem solid burlywood;
+    margin: .5rem;
+    padding: .5rem;
+    border: 0.5rem solid darkmagenta;
     background-color: ghostwhite;
     color: black;
     border-radius: 1rem;
+    font-family: Segoe UI;
 }
 
 .inputContainer {
     margin: 1em;
-}
+    }
 
 .inputLabelSide {
     margin-left: .3em;
